@@ -1,0 +1,33 @@
+<!--This code goes in the variable rootHTML once minified.-->
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+    function pressGarageButton() {
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", onGaragePressSuccess); // run onGaragePressSuccess() when the page loads
+        oReq.open("GET", "pressButton"); // tell it what page to go to: the full thing will be http://ip.of.your.esp/pressButton
+        oReq.send(); // send request
+        onGaragePress(); // run onGaragePress()
+    }
+
+    function onGaragePress() {
+        document.getElementById("status").innerHTML = "Pressed, waiting for response..."
+    }
+
+    function onGaragePressSuccess() {
+        document.getElementById("status").innerHTML = "Successfully pressed the garage button."
+    }
+
+</script>
+</head>
+<body>
+
+<h2>Garage</h2>
+<p id="status">Ready</p>
+<button type="button" onclick="pressGarageButton()">Press the garage button</button>
+<br>
+<br>
+<p>Direct press link: /pressButton</p>
+</body>
+</html>
